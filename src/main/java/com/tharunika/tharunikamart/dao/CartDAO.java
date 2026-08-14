@@ -1,0 +1,10 @@
+package com.tharunika.tharunikamart.dao;
+import com.tharunika.tharunikamart.model.CartItem; import java.sql.*; import java.util.*;
+public class CartDAO {
+ private final javax.sql.DataSource ds; public CartDAO(javax.sql.DataSource ds){this.ds=ds;}
+ public List<CartItem> find(long user)throws SQLException{List<CartItem> o=new ArrayList<>();String q="SELECT c.*,p.name,p.price,p.stock_qty,p.image_url FROM cart_items c JOIN products p ON p.id=c.product_id WHERE c.user_id=? ORDER BY c.id DESC";try(Connection c=ds.getConnection();PreparedStatement p=c.prepareStatement(q)){p.setLong(1,user);try(ResultSet r=p.executeQuery()){while(r.next())o.add(new CartItem(r.getLong("id"),r.getLong("product_id"),r.getString("name"),r.getBigDecimal("price"),r.getInt("quantity"),r.getInt("stock_qty"),r.getString("image_url")));}}return o;}
+ public void add(long user,long product,int qty)throws SQLException{String q="MERGE INTO cart_items(user_id,product_id,quantity) KEY(user_id,product_id) VALUES(?,?,COALESCE((SELECT quantity FROM cart_items WHERE user_id=? AND product_id=?),0)+?)";try(Connection c=ds.getConnection();PreparedStatement p=c.prepareStatement(q)){p.setLong(1,user);p.setLong(2,product);p.setLong(3,user);p.setLong(4,product);p.setInt(5,qty);p.executeUpdate();}}
+ public void update(long user,long product,int qty)throws SQLException{try(Connection c=ds.getConnection();PreparedStatement p=c.prepareStatement("UPDATE cart_items SET quantity=? WHERE user_id=? AND product_id=?")){p.setInt(1,qty);p.setLong(2,user);p.setLong(3,product);p.executeUpdate();}}
+ public void remove(long user,long product)throws SQLException{try(Connection c=ds.getConnection();PreparedStatement p=c.prepareStatement("DELETE FROM cart_items WHERE user_id=? AND product_id=?")){p.setLong(1,user);p.setLong(2,product);p.executeUpdate();}}
+ public void clear(long user)throws SQLException{try(Connection c=ds.getConnection();PreparedStatement p=c.prepareStatement("DELETE FROM cart_items WHERE user_id=?")){p.setLong(1,user);p.executeUpdate();}}
+}

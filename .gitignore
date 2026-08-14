@@ -1,0 +1,10 @@
+target/
+data/
+.env
+config.properties
+.idea/
+.vscode/
+*.iml
+*.class
+cp.txt
+*.class

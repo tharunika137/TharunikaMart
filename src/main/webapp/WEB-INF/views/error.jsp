@@ -1,0 +1,1 @@
+<%@ include file="header.jsp" %><div class="empty"><div class="empty-icon">!</div><h1>Something went wrong</h1><p><%=request.getAttribute("error")==null?"Please return to the marketplace and try again.":request.getAttribute("error")%></p><a class="btn" href="<%=ctx%>/app/home">Back to shop</a></div><%@ include file="footer.jsp" %>

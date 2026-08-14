@@ -1,0 +1,1 @@
+<%@ include file="header.jsp" %><div class="empty"><div class="success-mark">✓</div><h1>Order confirmed</h1><p><%=request.getAttribute("message")%></p><p class="muted">Order #<%=request.getAttribute("orderId")%></p><a class="btn" href="<%=ctx%>/app/orders">View orders</a></div><%@ include file="footer.jsp" %>
