@@ -1,0 +1,7 @@
+{
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "code-runner.ignoreLanguageList": [
+        "java"
+    ],
+    "java.import.maven.enabled": true
+}
