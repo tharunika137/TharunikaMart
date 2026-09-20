@@ -12,16 +12,21 @@ public class AppContextListener implements ServletContextListener {
 
     public void contextInitialized(ServletContextEvent e) {
         try {
-            String db = System.getProperty(
-                "tharunikamart.db",
-                "jdbc:h2:./data/tharunikamart;MODE=PostgreSQL;DB_CLOSE_DELAY=-1"
+            String db = System.getenv().getOrDefault(
+                "THARUNIKA_DB_URL",
+                System.getProperty(
+                    "tharunikamart.db",
+                    "jdbc:h2:./data/tharunikamart;MODE=PostgreSQL;DB_CLOSE_DELAY=-1"
+                )
             );
+            String user = System.getenv().getOrDefault("THARUNIKA_DB_USER", "sa");
+            String pass = System.getenv().getOrDefault("THARUNIKA_DB_PASSWORD", "");
 
             HikariConfig c = new HikariConfig();
             c.setJdbcUrl(db);
-            c.setDriverClassName("org.h2.Driver");
-            c.setUsername("sa");
-            c.setPassword("");
+            c.setDriverClassName(resolveDriverClass(db));
+            c.setUsername(user);
+            c.setPassword(pass);
 
             c.setMaximumPoolSize(10);
             c.setMinimumIdle(2);
@@ -38,6 +43,13 @@ public class AppContextListener implements ServletContextListener {
         } catch (Exception ex) {
             throw new RuntimeException("Database initialization failed", ex);
         }
+    }
+
+    private String resolveDriverClass(String jdbcUrl) {
+        if (jdbcUrl != null && jdbcUrl.startsWith("jdbc:postgresql:")) {
+            return "org.postgresql.Driver";
+        }
+        return "org.h2.Driver";
     }
 
     private void runScript(Connection con, String resource) throws Exception {
