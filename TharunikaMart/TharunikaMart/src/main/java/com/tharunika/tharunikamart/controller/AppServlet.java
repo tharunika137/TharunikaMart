@@ -26,6 +26,13 @@ public class AppServlet extends HttpServlet {
    else if(path.equals("/orders")){r.setAttribute("orders",orders.buyerOrders(user(r).id()));page(r,s,"orders");}
    else if(path.equals("/seller")){r.setAttribute("products",products.sellerProducts(user(r).id()));page(r,s,"seller");}
    else if(path.equals("/admin")){r.setAttribute("users",users.findAll());r.setAttribute("orders",orders.allOrders());r.setAttribute("products",products.search("",""));page(r,s,"admin");}
+   else if(path.equals("/product")){
+     long id=Long.parseLong(r.getParameter("id"));
+     Product p=products.find(id).orElse(null);
+     if(p==null){s.sendRedirect(r.getContextPath()+"/app/home");return;}
+     r.setAttribute("product",p);r.setAttribute("productReviews",reviews.forProduct(id));
+     page(r,s,"product");
+    }
    else page(r,s,"home");
   }catch(Exception e){throw new ServletException(e);}
  }
