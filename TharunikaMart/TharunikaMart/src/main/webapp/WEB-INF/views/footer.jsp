@@ -1,0 +1,1 @@
+</main><footer><div>© 2026 TharunikaMart · College Capstone Marketplace</div></footer><script src="<%=request.getContextPath()%>/assets/js/app.js"></script></body></html>

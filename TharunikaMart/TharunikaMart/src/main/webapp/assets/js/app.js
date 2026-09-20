@@ -1,0 +1,2 @@
+document.querySelectorAll(".tab").forEach(tab=>tab.addEventListener("click",()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));tab.classList.add("active");const role=tab.dataset.role;document.querySelector("#role").value=role;document.querySelector("#roleText").textContent=role==="ADMIN"?"Administrator":role.charAt(0)+role.slice(1).toLowerCase()}));
+document.querySelectorAll("form[data-confirm-cancel]").forEach(form=>form.addEventListener("submit",event=>{if(!window.confirm("Cancel this order?"))event.preventDefault()}));
