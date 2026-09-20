@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TharunikaMart</title>
+    <meta
+      name="description"
+      content="TharunikaMart static preview for GitHub Pages. The live Java/Tomcat backend is not hosted on GitHub Pages."
+    />
+    <style>
+      :root {
+        --bg: #0f172a;
+        --panel: #111827;
+        --card: #1f2937;
+        --text: #e5e7eb;
+        --muted: #9ca3af;
+        --accent: #38bdf8;
+        --accent-2: #34d399;
+        --border: rgba(148, 163, 184, 0.3);
+      }
+
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(180deg, var(--bg), #0b1220 55%, #111827);
+        color: var(--text);
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 48px 20px 72px;
+      }
+
+      .hero {
+        background: rgba(17, 24, 39, 0.8);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 36px 28px;
+        box-shadow: 0 16px 40px rgba(15, 23, 42, 0.5);
+      }
+
+      .eyebrow {
+        display: inline-block;
+        color: var(--accent-2);
+        background: rgba(52, 211, 153, 0.1);
+        border: 1px solid rgba(52, 211, 153, 0.35);
+        border-radius: 999px;
+        padding: 6px 12px;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      h1 {
+        margin: 18px 0 12px;
+        font-size: clamp(2.3rem, 6vw, 4rem);
+        line-height: 1.1;
+      }
+
+      p {
+        color: var(--muted);
+        line-height: 1.7;
+        font-size: 1.05rem;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 18px;
+        margin-top: 28px;
+      }
+
+      .card {
+        background: rgba(31, 41, 55, 0.8);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 22px 18px;
+      }
+
+      .card h2 {
+        margin: 0 0 12px;
+        font-size: 1.1rem;
+      }
+
+      .card ul {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--muted);
+      }
+
+      .notice {
+        margin-top: 28px;
+        background: rgba(56, 189, 248, 0.08);
+        border: 1px solid rgba(56, 189, 248, 0.35);
+        border-radius: 12px;
+        padding: 18px 20px;
+      }
+
+      .notice strong {
+        color: var(--text);
+      }
+
+      .links {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      a.button {
+        display: inline-block;
+        text-decoration: none;
+        padding: 10px 16px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      a.primary {
+        background: linear-gradient(135deg, var(--accent), #2563eb);
+        border: none;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="hero">
+        <div class="eyebrow">GitHub Pages preview</div>
+        <h1>TharunikaMart</h1>
+        <p>
+          This page is a static GitHub Pages landing page for the project preview. The full marketplace
+          application uses Java, Servlets, JSP, and Tomcat, so dynamic features cannot run directly on
+          GitHub Pages.
+        </p>
+
+        <div class="links">
+          <a class="button primary" href="https://github.com/tharunika137/TharunikaMart" target="_blank" rel="noopener noreferrer">View source repo</a>
+          <a class="button" href="./README.md">Open project README</a>
+        </div>
+
+        <div class="notice">
+          <strong>Static preview only:</strong> This GitHub Pages site is intentionally limited to static content.
+          Login, cart, checkout, database-backed actions, admin dashboards, and seller flows require the Java/Tomcat backend.
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h2>Included in static preview</h2>
+          <ul>
+            <li>Project landing page</li>
+            <li>Marketing and overview content</li>
+            <li>Repository links</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>Requires backend</h2>
+          <ul>
+            <li>User registration and login</li>
+            <li>Seller dashboard</li>
+            <li>Cart and checkout</li>
+            <li>Order management</li>
+            <li>Database-backed product actions</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>Deployment note</h2>
+          <ul>
+            <li>GitHub Pages hosts static HTML</li>
+            <li>Java Servlet/JSP app requires Tomcat</li>
+            <li>Use Azure App Service or similar host for the live app</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
